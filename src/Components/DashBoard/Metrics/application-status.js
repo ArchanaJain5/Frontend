@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
-import ComputerDesktopIcon from '@heroicons/react/24/solid/ComputerDesktopIcon';
-import DeviceTabletIcon from '@heroicons/react/24/solid/DeviceTabletIcon';
-import PhoneIcon from '@heroicons/react/24/solid/PhoneIcon';
+import ThumbDownIcon from '@mui/icons-material/ThumbDown';
+import QuizIcon from '@mui/icons-material/Quiz';
+import PersonIcon from '@mui/icons-material/Person';
 import {
   Box,
   Card,
@@ -63,30 +63,30 @@ const useChartOptions = (labels) => {
 };
 
 const iconMap = {
-  Desktop: (
-    <SvgIcon>
-      <ComputerDesktopIcon />
+  Reject: (
+    <SvgIcon fontSize="medium">
+      <ThumbDownIcon />
     </SvgIcon>
   ),
-  Tablet: (
-    <SvgIcon>
-      <DeviceTabletIcon />
+  Interview: (
+    <SvgIcon fontSize="medium">
+      <PersonIcon />
     </SvgIcon>
   ),
-  Phone: (
-    <SvgIcon>
-      <PhoneIcon />
+  OA: (
+    <SvgIcon fontSize="medium">
+      <QuizIcon />
     </SvgIcon>
   )
 };
 
-export const OverviewTraffic = (props) => {
+export const ApplicationStatus = (props) => {
   const { chartSeries, labels, sx } = props;
   const chartOptions = useChartOptions(labels);
 
   return (
     <Card sx={sx}>
-      <CardHeader title="Traffic Source" />
+      <CardHeader title="Application Status" />
       <CardContent>
         <Chart
           height={300}
@@ -136,7 +136,7 @@ export const OverviewTraffic = (props) => {
   );
 };
 
-OverviewTraffic.propTypes = {
+ApplicationStatus.propTypes = {
   chartSeries: PropTypes.array.isRequired,
   labels: PropTypes.array.isRequired,
   sx: PropTypes.object
