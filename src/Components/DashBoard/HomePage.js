@@ -4,8 +4,8 @@ import { Layout } from './layout';
 import { subDays, subHours } from 'date-fns';
 import { Box, Container, Unstable_Grid2 as Grid } from '@mui/material';
 
-import { OverviewBudget } from './Metrics/overview-budget';
-import { OverviewSales } from './Metrics/overview-sales';
+import { TotalApplications } from './Metrics/totalApplications';
+import { Applications } from './Metrics/applications';
 import { OverviewTasksProgress } from './Metrics/overview-tasks-progress';
 import { OverviewTotalCustomers } from './Metrics/overview-total-customers';
 import { OverviewTotalProfit } from './Metrics/overview-total-profit';
@@ -34,11 +34,11 @@ const HomePage = () => {
                     sm={6}
                     lg={3}
                 >
-                    <OverviewBudget
+                    <TotalApplications
                     difference={12}
                     positive
                     sx={{ height: '100%' }}
-                    value="$24k"
+                    value="231"
                     />
                 </Grid>
                 <Grid
@@ -77,16 +77,16 @@ const HomePage = () => {
                     xs={12}
                     lg={8}
                 >
-                    <OverviewSales
+                    <Applications
                     chartSeries={[
                         {
                         name: 'This year',
                         data: [18, 16, 5, 8, 3, 14, 14, 16, 17, 19, 18, 20]
                         },
-                        {
-                        name: 'Last year',
-                        data: [12, 11, 4, 6, 2, 9, 9, 10, 11, 12, 13, 13]
-                        }
+                        // {
+                        // name: 'Last year',
+                        // data: [12, 11, 4, 6, 2, 9, 9, 10, 11, 12, 13, 13]
+                        // }
                     ]}
                     sx={{ height: '100%' }}
                     />
