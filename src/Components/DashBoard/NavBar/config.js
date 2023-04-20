@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 export const items = [
   {
     title: (<h3>Dashboard</h3>),
-    path: '/',
+    path: '/HomePage',
     icon: (
       <SvgIcon fontSize="medium">
         <SpaceDashboardIcon />
