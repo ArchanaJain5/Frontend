@@ -5,7 +5,9 @@ import { Avatar, Box, Card, CardContent, Divider, Stack, SvgIcon, Typography } f
 
 export const CompanyCard = (props) => {
   const { company } = props;
-
+  if (!company || company.length === 0 || !company.Title) {
+    return null; // or display a message or placeholder
+  }
   return (
     <Card
       sx={{
@@ -22,23 +24,19 @@ export const CompanyCard = (props) => {
             pb: 3
           }}
         >
-          <Avatar
-            src={company.logo}
-            variant="square"
-          />
         </Box>
         <Typography
           align="center"
           gutterBottom
           variant="h5"
         >
-          {company.title}
+          {company.Title}
         </Typography>
         <Typography
           align="center"
           variant="body1"
         >
-          {company.description}
+          {company.Location}
         </Typography>
       </CardContent>
       <Box sx={{ flexGrow: 1 }} />
@@ -85,7 +83,6 @@ export const CompanyCard = (props) => {
             display="inline"
             variant="body2"
           >
-            {company.downloads} Downloads
           </Typography>
         </Stack>
       </Stack>

@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Helmet } from 'react-helmet';
+import { useEffect, useState } from 'react';
 import ArrowUpOnSquareIcon from '@heroicons/react/24/solid/ArrowUpOnSquareIcon';
 import ArrowDownOnSquareIcon from '@heroicons/react/24/solid/ArrowDownOnSquareIcon';
 import PlusIcon from '@heroicons/react/24/solid/PlusIcon';
@@ -19,24 +20,46 @@ import {
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const theme = createTheme();
+const ITEMS_PER_PAGE = 10;
 
-function fetch_Postings() {
-
-    const handleSubmit = async (event) => {
-    event.preventDefault();
-  
-      let res =await fetch (
+function Job_Postings  () {
+  const [companies, setData] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  useEffect(() => {
+    async function fetch_Postings() {
+      try{
+      var requestOptions = {
+        method: 'POST',
+        redirect: 'follow'
+      };
+      
+      let response =await fetch (
         "http://localhost:5050/api/job_postings/getjobs",
-        
+        requestOptions
     )
-    let data =await res.json();
-    console.log(data);
-
-
-  };
+    const jsonData = await response.json();
+    const { jobs } = jsonData;
+    setData(jobs);
+    console.log(jsonData);
+    console.log(companies);
+  } catch (error) {
+    console.error(error);
+  }
 }
+fetch_Postings();
+}, []);
 
-const Job_Postings = () => (
+const totalPages = Math.ceil(companies.length / ITEMS_PER_PAGE);
+const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+const endIndex = startIndex + ITEMS_PER_PAGE;
+const currentJobs = companies.slice(startIndex, endIndex);
+
+const handlePageChange = (event, value) => {
+  setCurrentPage(value);
+};
+
+
+  return (
   <>
     <Layout>
     <Helmet>
@@ -107,16 +130,16 @@ const Job_Postings = () => (
             container
             spacing={3}
           >
-            {/* {companies.map((company) => (
+            {currentJobs.map((company) => (
               <Grid
                 xs={12}
                 md={6}
                 lg={4}
-                key={company.id}
+                key={company._id}
               >
-                <CompanyCard company={company} />
+                <CompanyCard key={company._id} company={company}  />
               </Grid>
-            ))} */}
+            ))}
           </Grid>
           <Box
             sx={{
@@ -124,25 +147,24 @@ const Job_Postings = () => (
               justifyContent: 'center'
             }}
           >
-            <Pagination
-              count={3}
-              size="small"
-            />
+             <Pagination count={totalPages} page={currentPage} onChange={handlePageChange} />
           </Box>
         </Stack>
       </Container>
     </Box>
-    </Layout>
+  </Layout>
   </>
 
 )
-
-Job_Postings.getLayout = (page) => (
-  <Layout>
-    {page}
-  </Layout>
-);
-
-export default Job_Postings;
+}
+// Job_Postings.getLayout = function(page) {
+//   return (
+//     <Layout>
+//       {page}
+//       console.log(page);
+//     </Layout>
+//   );
+// }
+export default Job_Postings ;
 
 
