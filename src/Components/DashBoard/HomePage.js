@@ -115,11 +115,11 @@ const HomePage = () => {
 };
 
 
-HomePage.getLayout = (page) => (
-    <Layout>
-      {page}
-    </Layout>
-  );
+// HomePage.getLayout = (page) => (
+//     <Layout>
+//       {page}
+//     </Layout>
+//   );
   
 
 export default HomePage;

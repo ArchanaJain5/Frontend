@@ -2,14 +2,11 @@
 // import { usePathname } from 'next/navigation';
 // import PropTypes from 'prop-types';
 import {
-  Box,
-  Button,
-  Divider,
+  Box,  
   Drawer,
   Stack,
   SvgIcon,
   Typography,
-  useMediaQuery
 } from '@mui/material';
 import { Scrollbar } from '../../scrollbar';
 import { items } from './config';
@@ -65,7 +62,7 @@ export const SideBar = () => {
             />
             );
         })}
-        </Stack>
+        </Stack>        
     </Box>              
     </Scrollbar>
   );
@@ -82,7 +79,7 @@ export const SideBar = () => {
                     }}
         variant="permanent"
     >
-            {content}
+            {content}            
     </Drawer>
   );
 

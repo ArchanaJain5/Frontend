@@ -4,7 +4,7 @@ import ScreenSearchDesktopIcon from '@mui/icons-material/ScreenSearchDesktop';
 import SpaceDashboardIcon from '@mui/icons-material/SpaceDashboard';
 import UserIcon from '@heroicons/react/24/solid/UserIcon';
 import { SvgIcon } from '@mui/material';
-import { Link } from 'react-router-dom';
+import LogoutIcon from '@mui/icons-material/Logout';
 
 export const items = [
   {
@@ -18,7 +18,7 @@ export const items = [
   },
   {
     title: ( <h3>Generate Resume</h3> ),
-    path: '/resume',
+    path: '/HomePage/Resume',
     icon: (
       <SvgIcon fontSize="medium">
         <DescriptionIcon />
@@ -49,6 +49,15 @@ export const items = [
     icon: (
       <SvgIcon fontSize="medium">
         <UserIcon />
+      </SvgIcon>
+    )
+  },
+  {
+    title: (<h3>Logout</h3>),
+    path: '/',
+    icon: (
+      <SvgIcon fontSize="medium">
+        <LogoutIcon />
       </SvgIcon>
     )
   }
